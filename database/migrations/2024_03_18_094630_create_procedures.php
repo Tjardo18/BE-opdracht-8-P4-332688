@@ -181,6 +181,29 @@ return new class extends Migration {
                         WHERE
                             l.id = l_id;
                     END");
+
+        DB::select("DROP PROCEDURE IF EXISTS getProductAllergenenInfo");
+        DB::unprepared("CREATE PROCEDURE getProductAllergenenInfo()
+                    BEGIN
+                        SELECT DISTINCT
+                            p.naam AS 'pNaam',
+                            a.naam AS 'aNaam',
+                            a.omschrijving AS 'aOmschrijving',
+                            COALESCE(m.aantalAanwezig, 0) AS 'mAantalAanwezig',
+                            ppl.leverancierId as 'lId'
+                        FROM
+                            productperallergeen pa
+                        INNER JOIN
+                            product p ON pa.productId = p.id
+                        INNER JOIN
+                            allergeen a ON pa.allergeenId = a.id
+                        INNER JOIN
+                            magazijn m ON p.id = m.productId
+                        INNER JOIN
+                            productperleverancier ppl ON p.Id = ppl.productId
+                        ORDER BY
+                            p.naam ASC;
+                    END");
     }
 
     /**
@@ -197,5 +220,6 @@ return new class extends Migration {
         DB::unprepared("DROP PROCEDURE IF EXISTS getOverzicht");
         DB::unprepared("DROP PROCEDURE IF EXISTS getLeveringen");
         DB::unprepared("DROP PROCEDURE IF EXISTS getLeverancierInfo");
+        DB::unprepared("DROP PROCEDURE IF EXISTS getProductAllergenenInfo");
     }
 };
