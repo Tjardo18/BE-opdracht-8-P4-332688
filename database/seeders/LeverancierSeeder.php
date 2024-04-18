@@ -80,6 +80,17 @@ class LeverancierSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'naam' => 'Hom Ken Food',
+                'contactPersoon' => 'Hom Ken',
+                'leverancierNummer' => 'L1029234599',
+                'mobiel' => '06-23458477',
+                'contactId' => NULL,
+                'isActief' => 1,
+                'opmerkingen' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
         ]);
     }
 }
