@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LeverancierDetailsController;
 use App\Http\Controllers\LeveringController;
+use App\Http\Controllers\OverzichtAllergeenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OverzichtController;
 use App\Http\Controllers\AllergeenController;
@@ -32,3 +33,5 @@ Route::post('/nieuwe-levering', [NieuweLeveringController::class, 'store'])->nam
 Route::get('/leverancier-details/{id}', [LeverancierDetailsController::class, 'index',])->name('leverancier-details.index');
 
 Route::post('/leverancier-details', [LeverancierDetailsController::class, 'store'])->name('leverancier-details.store');
+
+Route::get('/allergeen-overzicht', [OverzichtAllergeenController::class, 'index',])->name('allergeen-overzicht.index');
