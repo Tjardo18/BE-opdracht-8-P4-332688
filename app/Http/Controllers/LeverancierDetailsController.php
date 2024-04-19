@@ -23,16 +23,7 @@ class LeverancierDetailsController extends Controller
         $data = [
             'title' => 'Leverancier Details',
             'LId' => $id,
-            'CId' => $result[0]->contactId,
-            'naam' => $result[0]->Lnaam,
-            'contactPersoon' => $result[0]->contactPersoon,
-            'leverancierNummer' => $result[0]->leverancierNummer,
-            'mobiel' => $result[0]->mobiel,
-            'straatnaam' => $result[0]->straat,
-            'huisnummer' => $result[0]->huisnummer,
-            'postcode' => $result[0]->postcode,
-            'stad' => $result[0]->stad,
-
+            'result' => $result,
         ];
 
         return view('leverancier-details', $data);

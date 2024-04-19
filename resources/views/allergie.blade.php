@@ -25,23 +25,36 @@
         </h1>
     </div>
     <h3>
-        Product Naam: <span>{{ $naamProduct }}</span>
+        Product Naam: <span>{{ $product[0]->PNaam }}</span>
     </h3>
     <h3>
-        Barcode: <span>{{ $barcode }}</span>
+        Barcode: <span>{{ $product[0]->barcode }}</span>
     </h3>
     <table>
         <thead>
-        {!! $th !!}
+        @if ($result == null)
+        @else
+            <th>Naam</th>
+            <th>Omschrijving</th>
+        @endif
         </thead>
         <tbody>
-        {!! $rows !!}
+        @if ($result == null)
+            <h1 style='text-align: center'>In dit product zitten geen stoffen die een<br>allergische reactie kan
+                veroorzaken</h1>
+        @else
+            @foreach ($result as $allergien)
+                <tr>
+                    <td>{{$allergien->ANaam}}</td>
+                    <td>{{$allergien->omschrijving}}</td>
+                </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
 </div>
 
 <script src="{{ asset('js/column.js') }}"></script>
-<script src="{{ asset('js/copy.js') }}"></script>
 
 </body>
 

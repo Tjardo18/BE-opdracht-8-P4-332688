@@ -16,29 +16,9 @@ class OverzichtController extends Controller
     {
         $result = DB::select('CALL getOverzicht()');
 
-        $rows = "";
-        foreach ($result as $overzicht) {
-            $rows .= "<tr>
-                         <td>$overzicht->Barcode</td>
-                         <td>$overzicht->Naam</td>
-                         <td>$overzicht->VerpakkingsEenheid</td>
-                         <td>$overzicht->AantalAanwezig</td>
-                         <td>
-                             <a href='allergie/{$overzicht->Id}'>
-                                 <i class='fa-solid fa-xmark' style='color: #ff0000;'></i>
-                             </a>
-                         </td>
-                         <td>
-                             <a href='leverancier/{$overzicht->Id}'>
-                                 <i class='fa-solid fa-question' style='color: #0000ff;'></i>
-                             </a>
-                         </td>
-                     </tr>";
-        }
-
         $data = [
             'title' => 'Overzicht Magazijn Jamin',
-            'rows' => $rows
+            'result' => $result,
         ];
 
         return view('overzicht', $data);

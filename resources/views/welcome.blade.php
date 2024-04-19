@@ -28,6 +28,11 @@
         <h1 style="cursor: pointer">Leverancier Overzicht</h1>
     </a>
 </div>
+<div class="title">
+    <a href="/allergeen-overzicht">
+        <h1 style="cursor: pointer">Allergenen Overzicht</h1>
+    </a>
+</div>
 
 <script>
     // window.location.href = '/overzicht';

@@ -25,23 +25,46 @@
         </h1>
     </div>
     <h3>
-        Naam Leverancier: <span>{{ $naamLeverancier }}</span>
+        Naam Leverancier: <span>{{ $leverancier[0]->Naam }}</span>
     </h3>
     <h3>
-        Contactpersoon Leverancier: <span>{{ $contactPersoon }}</span>
+        Contactpersoon Leverancier: <span>{{ $leverancier[0]->ContactPersoon }}</span>
     </h3>
     <h3>
-        Leveranciernummer: <span>{{ $leverancierNummer }}</span>
+        Leveranciernummer: <span>{{ $leverancier[0]->leverancierNummer }}</span>
     </h3>
     <h3>
-        Mobiel: <span>{{ $mobiel }}</span>
+        Mobiel: <span>{{ $leverancier[0]->mobiel }}</span>
     </h3>
     <table>
         <thead>
-        {!! $th !!}
+        @if ($result == null)
+        @else
+            <th>Naam product</th>
+            <th>Aantal in magazijn</th>
+            <th>Verpakkingseenheid</th>
+            <th>Laatste levering</th>
+            <th>Nieuwe levering</th>
+        @endif
         </thead>
         <tbody>
-        {!! $rows !!}
+        @if ($result == null)
+            <h1 style='text-align: center'>Dit bedrijf heeft tot nu toe geen producten geleverd aan Jamin</h1>
+        @else
+            @foreach ($result as $levering)
+                <tr>
+                    <td>{{$levering->PNaam}}</td>
+                    <td>{{$levering->AantalAanwezig}}</td>
+                    <td>{{$levering->VerpakkingsEenheid}} kg</td>
+                    <td>{{$levering->DatumLevering}}</td>
+                    <td>
+                        <a href='/nieuwe-levering/{{$levering->Pid}}'>
+                            <i class='bx bx-plus-circle' style='color: #ff2287'></i>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
 </div>

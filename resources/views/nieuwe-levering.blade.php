@@ -25,13 +25,13 @@
             </h1>
         </div>
         <h3>
-            Leverancier: <span>{{ $naamLeverancier }}</span>
+            Leverancier: <span>{{ $leverancier[0]->Naam }}</span>
         </h3>
         <h3>
-            Contactpersoon: <span>{{ $contactPersoon }}</span>
+            Contactpersoon: <span>{{ $leverancier[0]->ContactPersoon }}</span>
         </h3>
         <h3 style="margin-bottom: 20px">
-            Mobiel: <span>{{ $mobiel }}</span>
+            Mobiel: <span>{{ $leverancier[0]->mobiel }}</span>
         </h3>
         <form method="post" action="{{ route('nieuwe-leveringen.store') }}">
             @csrf
