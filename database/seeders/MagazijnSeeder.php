@@ -131,6 +131,15 @@ class MagazijnSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'productId' => 14,
+                'verpakkingsEenheid' => 5,
+                'aantalAanwezig' => 20,
+                'isActief' => 1,
+                'opmerkingen' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
