@@ -176,7 +176,7 @@ return new class extends Migration {
                             c.stad
                         FROM
                             leverancier l
-                        INNER JOIN
+                        LEFT JOIN
                             contact c ON l.contactId = c.id
                         WHERE
                             l.id = l_id;
