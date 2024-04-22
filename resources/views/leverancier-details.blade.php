@@ -45,16 +45,17 @@
                value="{{ $result[0]->mobiel }}" required>
         <label for="straatnaam">Straatnaam</label>
         <input type="text" name="straatnaam" id="straatnaam"
-               value="{{ $result[0]->straat }}" required>
+               value="{{ $result[0]->straat }}" {{ is_null($result[0]->contactId) ? 'disabled' : '' }} required>
         <label for="huisnummer">Huisnummer</label>
         <input type="text" name="huisnummer" id="huisnummer"
-               value="{{ $result[0]->huisnummer }}" required>
+               value="{{ $result[0]->huisnummer }}" {{ is_null($result[0]->contactId) ? 'disabled' : '' }} required>
         <label for="postcode">Postcode</label>
-        <input type="text" name="postcode" id="postcode" placeholder="1234AB"
-               value="{{ $result[0]->postcode }}" required>
+        <input type="text" name="postcode" id="postcode"
+               value="{{ $result[0]->postcode }}"
+               {{ is_null($result[0]->contactId) ? 'disabled' : 'placeholder=1234AB' }} required>
         <label for="stad">Stad</label>
         <input type="text" name="stad" id="stad"
-               value="{{ $result[0]->stad }}" required>
+               value="{{ $result[0]->stad }}" {{ is_null($result[0]->contactId) ? 'disabled' : '' }} required>
 
         <div class="snel">
             <a class="button" href="/leverancier-overzicht">Terug</a>
