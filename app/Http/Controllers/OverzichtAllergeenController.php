@@ -23,4 +23,16 @@ class OverzichtAllergeenController extends Controller
 
         return view('allergeen-overzicht', $data);
     }
+
+    public function filterByAllergie(Request $request)
+    {
+        $result = DB::select('CALL getProductAllergenenInfoByAllergen(?)', [$request->filter_allergie]);
+
+        $data = [
+            'title' => 'Allergenen Overzicht',
+            'result' => $result
+        ];
+
+        return view('allergeen-overzicht', $data);
+    }
 }

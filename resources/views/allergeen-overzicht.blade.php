@@ -24,6 +24,21 @@
             {{ $title }}
         </h1>
     </div>
+
+    <div class="filter" style="width: 50%">
+        <form id="filterForm" action="{{ route('allergeen-overzicht.filterByAllergie') }}" method="GET"
+              onchange="submitForm()">
+            <select id="filter_allergie" name="filter_allergie">
+                <option hidden="">Kies...</option>
+                <option value="gluten">Gluten</option>
+                <option value="gelatine">Gelatine</option>
+                <option value="azo-kleurstof">AZO-Kleurstof</option>
+                <option value="lactose">Lactose</option>
+                <option value="soja">Soja</option>
+            </select>
+        </form>
+    </div>
+
     <table>
         <thead>
         <th>Naam product</th>
@@ -51,6 +66,12 @@
 </div>
 
 <script src="{{ asset('js/column.js') }}"></script>
+
+<script>
+    function submitForm() {
+        document.getElementById('filterForm').submit();
+    }
+</script>
 
 </body>
 

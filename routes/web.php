@@ -35,3 +35,5 @@ Route::get('/leverancier-details/{id}', [LeverancierDetailsController::class, 'i
 Route::post('/leverancier-details', [LeverancierDetailsController::class, 'store'])->name('leverancier-details.store');
 
 Route::get('/allergeen-overzicht', [OverzichtAllergeenController::class, 'index',])->name('allergeen-overzicht.index');
+
+Route::get('/allergeen-overzicht/filter', [OverzichtAllergeenController::class, 'filterByAllergie'])->name('allergeen-overzicht.filterByAllergie');
