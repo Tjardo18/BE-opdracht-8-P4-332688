@@ -22,11 +22,9 @@ class NieuweLeveringController extends Controller
         $data = [
             'title' => 'Nieuwe Levering',
             'leverancierId' => $leverancierId[0]->leverancierId,
-            'naamLeverancier' => $leverancier[0]->Naam,
-            'contactPersoon' => $leverancier[0]->ContactPersoon,
             'leverancierNummer' => $leverancier[0]->leverancierNummer,
+            'leverancier' => $leverancier,
             'productId' => $id,
-            'mobiel' => $leverancier[0]->mobiel,
         ];
 
         return view('nieuwe-levering', $data);

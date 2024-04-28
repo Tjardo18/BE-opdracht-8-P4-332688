@@ -110,6 +110,14 @@ class ProductPerAllergeenSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'productId' => 14,
+                'allergeenId' => 5,
+                'isActief' => 1,
+                'opmerkingen' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

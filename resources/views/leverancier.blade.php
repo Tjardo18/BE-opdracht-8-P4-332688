@@ -25,29 +25,46 @@
         </h1>
     </div>
     <h3>
-        Naam Leverancier: <span>{{ $naamLeverancier }}</span>
+        Naam Leverancier: <span>{{ $result[0]->LNaam }}</span>
     </h3>
     <h3>
-        Contactpersoon Leverancier: <span>{{ $contactPersoon }}</span>
+        Contactpersoon Leverancier: <span>{{ $result[0]->contactPersoon }}</span>
     </h3>
     <h3>
-        Leveranciernummer: <span>{{ $leverancierNummer }}</span>
+        Leveranciernummer: <span>{{ $result[0]->leverancierNummer }}</span>
     </h3>
     <h3>
-        Mobiel: <span>{{ $mobiel }}</span>
+        Mobiel: <span>{{ $result[0]->mobiel }}</span>
     </h3>
     <table>
         <thead>
-        {!! $th !!}
+        @if ($result[0]->AantalAanwezig == 0)
+        @else
+            <th>Naam Product</th>
+            <th>Datum Laatste Levering</th>
+            <th>Aantal</th>
+            <th>Eerstvolgende Levering</th>
+        @endif
         </thead>
         <tbody>
-        {!! $rows !!}
+        @if ($result[0]->AantalAanwezig == 0)
+            <h1 style='text-align: center'>Er is van dit product op dit moment geen voorraad aanwezig,<br> de verwachte
+                eerstvolgende levering is: <span>" . {{$result[0]->DatumEVL}} . "</span></h1>
+        @else
+            @foreach ($result as $leverancier)
+                <tr>
+                    <td>{{$leverancier->PNaam}}</td>
+                    <td>{{$leverancier->datumLevering}}</td>
+                    <td>{{$leverancier->aantal}}</td>
+                    <td>{{$leverancier->DatumEVL}}</td>
+                </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
 </div>
 
 <script src="{{ asset('js/column.js') }}"></script>
-<script src="{{ asset('js/copy.js') }}"></script>
 
 </body>
 

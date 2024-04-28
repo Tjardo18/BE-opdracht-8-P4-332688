@@ -118,6 +118,14 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'naam' => 'Drop ninja\'s',
+                'barcode' => '8719587323277',
+                'isActief' => 1,
+                'opmerkingen' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

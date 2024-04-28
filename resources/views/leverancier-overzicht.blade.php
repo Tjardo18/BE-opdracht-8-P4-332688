@@ -35,7 +35,25 @@
         <th>Details</th>
         </thead>
         <tbody>
-        {!! $rows !!}
+        @foreach ($result as $leverancier)
+            <tr>
+                <td>{{$leverancier->Naam}}</td>
+                <td>{{$leverancier->ContactPersoon}}</td>
+                <td>{{$leverancier->LeverancierNummer}}</td>
+                <td>{{$leverancier->Mobiel}}</td>
+                <td>{{$leverancier->ProductCount}}</td>
+                <td>
+                    <a href='/leveringen/{{$leverancier->id}}'>
+                        <i class='bx bxs-package' style='color: #ff2287;'></i>
+                    </a>
+                </td>
+                <td>
+                    <a href='/leverancier-details/{{$leverancier->id}}'>
+                        <i class='bx bxs-edit' style='color: #ff2287;'></i>
+                    </a>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>

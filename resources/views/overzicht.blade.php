@@ -34,13 +34,29 @@
         <th>Leverantie Info</th>
         </thead>
         <tbody>
-        {!! $rows !!}
+        @foreach ($result as $overzicht)
+            <tr>
+                <td>{{$overzicht->Barcode}}</td>
+                <td>{{$overzicht->Naam}}</td>
+                <td>{{$overzicht->VerpakkingsEenheid}}</td>
+                <td>{{$overzicht->AantalAanwezig}}</td>
+                <td>
+                    <a href="allergie/{{$overzicht->Id}}">
+                        <i class='fa-solid fa-xmark' style='color: #ff0000;'></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="leverancier/{{$overzicht->Id}}">
+                        <i class='fa-solid fa-question' style='color: #0000ff;'></i>
+                    </a>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
 
 <script src="{{ asset('js/column.js') }}"></script>
-<script src="{{ asset('js/copy.js') }}"></script>
 
 </body>
 

@@ -201,6 +201,17 @@ class ProductPerLeverancierSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'leverancierId' => 7,
+                'productId' => 14,
+                'datumLevering' => '2023-04-14',
+                'aantal' => 20,
+                'datumEerstvolgendeLevering' => NULL,
+                'isActief' => 1,
+                'opmerkingen' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

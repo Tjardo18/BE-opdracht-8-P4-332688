@@ -176,10 +176,58 @@ return new class extends Migration {
                             c.stad
                         FROM
                             leverancier l
-                        INNER JOIN
+                        LEFT JOIN
                             contact c ON l.contactId = c.id
                         WHERE
                             l.id = l_id;
+                    END");
+
+        DB::select("DROP PROCEDURE IF EXISTS getProductAllergenenInfo");
+        DB::unprepared("CREATE PROCEDURE getProductAllergenenInfo()
+                    BEGIN
+                        SELECT DISTINCT
+                            p.naam AS 'pNaam',
+                            a.naam AS 'aNaam',
+                            a.omschrijving AS 'aOmschrijving',
+                            COALESCE(m.aantalAanwezig, 0) AS 'mAantalAanwezig',
+                            ppl.leverancierId as 'lId'
+                        FROM
+                            productperallergeen pa
+                        INNER JOIN
+                            product p ON pa.productId = p.id
+                        INNER JOIN
+                            allergeen a ON pa.allergeenId = a.id
+                        INNER JOIN
+                            magazijn m ON p.id = m.productId
+                        INNER JOIN
+                            productperleverancier ppl ON p.Id = ppl.productId
+                        ORDER BY
+                            p.naam ASC;
+                    END");
+
+        DB::select("DROP PROCEDURE IF EXISTS getProductAllergenenInfoByAllergen");
+        DB::unprepared("CREATE PROCEDURE getProductAllergenenInfoByAllergen(IN allergie VARCHAR(255))
+                    BEGIN
+                        SELECT DISTINCT
+                            p.naam AS 'pNaam',
+                            a.naam AS 'aNaam',
+                            a.omschrijving AS 'aOmschrijving',
+                            COALESCE(m.aantalAanwezig, 0) AS 'mAantalAanwezig',
+                            ppl.leverancierId as 'lId'
+                        FROM
+                            productperallergeen pa
+                        INNER JOIN
+                            product p ON pa.productId = p.id
+                        INNER JOIN
+                            allergeen a ON pa.allergeenId = a.id
+                        INNER JOIN
+                            magazijn m ON p.id = m.productId
+                        INNER JOIN
+                            productperleverancier ppl ON p.Id = ppl.productId
+                        WHERE
+                            a.naam COLLATE utf8mb4_unicode_ci = allergie COLLATE utf8mb4_unicode_ci
+                        ORDER BY
+                            p.naam ASC;
                     END");
     }
 
@@ -197,5 +245,7 @@ return new class extends Migration {
         DB::unprepared("DROP PROCEDURE IF EXISTS getOverzicht");
         DB::unprepared("DROP PROCEDURE IF EXISTS getLeveringen");
         DB::unprepared("DROP PROCEDURE IF EXISTS getLeverancierInfo");
+        DB::unprepared("DROP PROCEDURE IF EXISTS getProductAllergenenInfo");
+        DB::unprepared("DROP PROCEDURE IF EXISTS getProductAllergenenInfoByAllergen");
     }
 };

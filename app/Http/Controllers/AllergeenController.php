@@ -17,28 +17,13 @@ class AllergeenController extends Controller
         $product = DB::select('CALL getProduct(?)', [$id]);
 
         if (empty($result)) {
-            $th = '';
-            $rows = "<h1 style='text-align: center'>In dit product zitten geen stoffen die een<br>allergische reactie kan veroorzaken</h1>";
             header("Refresh: 4; url=/overzicht");
-        } else {
-            $th = "<th>Naam</th>
-            <th>Omschrijving</th>";
-
-            $rows = '';
-            foreach ($result as $allergien) {
-                $rows .= "<tr>
-                            <td>$allergien->ANaam</td>
-                            <td>$allergien->omschrijving</td>
-                        </tr>";
-            }
         }
 
         $data = [
             'title' => 'Overzicht Allergenen',
-            'naamProduct' => $product[0]->PNaam,
-            'barcode' => $product[0]->barcode,
-            'rows' => $rows,
-            'th' => $th,
+            'product' => $product,
+            'result' => $result,
         ];
 
         return view('allergie', $data);
